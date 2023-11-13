@@ -24,16 +24,16 @@ public class TaskExecutor {
 
     public void iniciar(){
         alimentarTarefas();
-
+        
         long tempoInicio = System.currentTimeMillis();
         Executor executor = new Executor("Executor", this);
         executor.start();
-
+        
         iniciarTrabalhadores(executor);
 
         long tempoTotal = System.currentTimeMillis() - tempoInicio;
         System.out.println(tempoTotal + " ms");
-        Main.tempoTotal += tempoTotal;
+        Main.tempoTestes += tempoTotal;
     }
 
     public void alimentarTarefas(){
@@ -49,13 +49,12 @@ public class TaskExecutor {
         Trabalhador[] trabalhadores = new Trabalhador[T];
 
         for (int i = 0; i < T; i++) {
-			trabalhadores[i] = new Trabalhador((i+""), executor, arquivo);
+			trabalhadores[i] = new Trabalhador(executor, arquivo);
 		}
-		
 		for (int i = 0; i < T; i++) {
 			trabalhadores[i].start();
 		}
-		
+        
 		try {
 			for (int i = 0; i < T; i++) {
 				trabalhadores[i].join();

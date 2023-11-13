@@ -1,10 +1,8 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class Executor extends Thread{
-    private Queue<Tarefa> tarefas;
+    Queue<Tarefa> tarefas;
 
     TaskExecutor taskExecutor;
     boolean possuiElementos;
@@ -17,10 +15,18 @@ public class Executor extends Thread{
     }
 
     public void run(){
-        while(taskExecutor.Tarefas.size() > 0){
-            despacharTarefa(taskExecutor.Tarefas.remove());
+        Tarefa tarefa = null;
+        while(!taskExecutor.Tarefas.isEmpty()){
+            tarefa = taskExecutor.Tarefas.poll();
+            if(tarefa != null){
+                despacharTarefa(tarefa);
+            }
         } 
         possuiElementos = false;
+
+        if(tarefas.size() > 0) {
+            acordarTrabalhadores();
+        }
     }
 
     public void guardarResultado(Resultado resultado){
@@ -33,9 +39,7 @@ public class Executor extends Thread{
 	}
 
 	public synchronized Tarefa pegarTarefa() {
-		while (tarefas.size() == 0) {
-			//System.out.print("Buffer is empty. ");
-			//System.out.print(Thread.currentThread().getName() + " suspended.\n");
+		while (tarefas.size() == 0 && possuiElementos == true) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -43,10 +47,10 @@ public class Executor extends Thread{
 			}
 		}
 		
-		Tarefa tarefa = tarefas.poll();
-		//System.out.println(Thread.currentThread().getName() + " removed " + tarefa);
-		return tarefa;
+		return tarefas.poll();
 	}
+
+    public synchronized void acordarTrabalhadores(){
+        notifyAll();
+    }
 }
-
-

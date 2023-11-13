@@ -11,17 +11,16 @@ public class Arquivo {
 
     public int escrita(int v){
         lock.lock();
+        
         try {
             this.valor += v;
             return this.valor;
         } finally{
             lock.unlock();
         }
-
     }
 
     public int  leitura(){
         return this.valor;
     }
-
 }
