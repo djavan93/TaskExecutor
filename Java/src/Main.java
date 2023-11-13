@@ -1,5 +1,8 @@
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class Main {
     //Testes
@@ -12,23 +15,35 @@ public class Main {
     public static void main(String[] args) {
         int numeroTeste = 1;
         long tempoInicio = System.currentTimeMillis();
+        try {
+            String caminhoArquivo = "java/resultados/resultado_"+ UUID.randomUUID() + ".txt";
+            FileOutputStream arquivoSaida = new FileOutputStream(caminhoArquivo);
+            PrintStream printStream = new PrintStream(arquivoSaida);
+            System.setOut(printStream);
+            for(int i = 0; i < N.size(); i++){
+                for(int j = 0; j < E.size(); j++){
+                    for(int k = 0; k < T.size(); k++){
+                        int[] entradas = lerEntradas(i, j, k);
+                        TaskExecutor executor = new TaskExecutor(entradas[0], entradas[1], entradas[2]);
+                        System.out.print(numeroTeste + " - Teste (N = " + entradas[0] + ", E = " + entradas[1] + ", T = " + entradas[2] + "): Tempo = ");
 
-        for(int i = 0; i < N.size(); i++){
-            for(int j = 0; j < E.size(); j++){
-                for(int k = 0; k < T.size(); k++){
-                    int[] entradas = lerEntradas(i, j, k);
-                    TaskExecutor executor = new TaskExecutor(entradas[0], entradas[1], entradas[2]);
-                    System.out.print(numeroTeste + " - Teste (N = " + entradas[0] + ", E = " + entradas[1] + ", T = " + entradas[2] + "): Tempo = ");
+                        executor.iniciar();
 
-                    executor.iniciar();
-
-                    numeroTeste++;
+                        numeroTeste++;
+                    }
                 }
             }
+            System.out.println("Tempo gasto pelos trabalhadores para executar todos os testes: " + tempoTestes + " ms");
+            System.out.println("Tempo gasto pelo sistema: " + (System.currentTimeMillis() - tempoInicio) + " ms");
+
+            printStream.close();
+            arquivoSaida.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        System.out.println("Tempo gasto pelos trabalhadores para executar todos os testes: " + tempoTestes + " ms");
-        System.out.println("Tempo gasto pelo sistema: " + (System.currentTimeMillis() - tempoInicio) + " ms");
+
     }
 
     private static int[] lerEntradas(int i, int j, int k){
