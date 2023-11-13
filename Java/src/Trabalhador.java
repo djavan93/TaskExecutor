@@ -5,7 +5,8 @@ public class Trabalhador extends Thread{
     
     private long tempoInicio;
 
-    public Trabalhador(Executor executor, Arquivo arquivoCompartilhado){
+    public Trabalhador(String nome, Executor executor, Arquivo arquivoCompartilhado){
+        super(nome);
         this.executor = executor;
         this.arquivoCompartilhado = arquivoCompartilhado;
     }
@@ -43,7 +44,7 @@ public class Trabalhador extends Thread{
 
     public void run(){
         while(executor.possuiElementos){
-            Tarefa novaTarefa = executor.getTarefa();
+            Tarefa novaTarefa = executor.pegarTarefa();
             if(novaTarefa == null){
                 continue;
             }

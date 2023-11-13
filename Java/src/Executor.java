@@ -1,48 +1,52 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Executor extends Thread{
-    Queue<Tarefa> tarefas;
+    private Queue<Tarefa> tarefas;
+
     TaskExecutor taskExecutor;
     boolean possuiElementos;
 
-    public Executor(TaskExecutor taskExecutor){
+    public Executor(String name, TaskExecutor taskExecutor){
+        super(name);
+        this.taskExecutor = taskExecutor;
         tarefas = new LinkedList<Tarefa>();
         possuiElementos = true;
     }
 
     public void run(){
-        Tarefa tarefa = taskExecutor.Tarefas.poll();
-        while(tarefa != null){
-            tarefas.add(tarefa);
-            tarefa = taskExecutor.Tarefas.poll();
-            notify();
-        }
-        //Verifica se possui elementos restantes na fila
-        while(tarefas.size() > 0){
-            notify();
-        }
+        while(taskExecutor.Tarefas.size() > 0){
+            despacharTarefa(taskExecutor.Tarefas.remove());
+        } 
         possuiElementos = false;
-        notifyAll();
-    }
-
-    public Tarefa getTarefa(){
-        Tarefa novaTarefa = tarefas.poll();
-        while(novaTarefa == null && possuiElementos == true){
-            try {
-				wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-            novaTarefa = tarefas.poll();
-        }
-    
-        return novaTarefa;
     }
 
     public void guardarResultado(Resultado resultado){
         taskExecutor.Resultados.add(resultado);
     }
+
+	public synchronized void despacharTarefa(Tarefa tarefa) {
+		tarefas.add(tarefa);
+		notify();
+	}
+
+	public synchronized Tarefa pegarTarefa() {
+		while (tarefas.size() == 0) {
+			//System.out.print("Buffer is empty. ");
+			//System.out.print(Thread.currentThread().getName() + " suspended.\n");
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		Tarefa tarefa = tarefas.poll();
+		//System.out.println(Thread.currentThread().getName() + " removed " + tarefa);
+		return tarefa;
+	}
 }
 
 
