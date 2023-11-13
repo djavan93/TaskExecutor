@@ -16,7 +16,7 @@ public class Main {
         int numeroTeste = 1;
         long tempoInicio = System.currentTimeMillis();
         try {
-            String caminhoArquivo = "java/resultados/resultado_"+ UUID.randomUUID() + ".txt";
+            String caminhoArquivo = "resultado_"+ UUID.randomUUID() + ".txt";
             FileOutputStream arquivoSaida = new FileOutputStream(caminhoArquivo);
             PrintStream printStream = new PrintStream(arquivoSaida);
             System.setOut(printStream);
