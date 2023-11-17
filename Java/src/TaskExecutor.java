@@ -25,15 +25,15 @@ public class TaskExecutor {
     public void iniciar(){
         alimentarTarefas();
         
-        long tempoInicio = System.currentTimeMillis();
-        Executor executor = new Executor("Executor", this);
+        long tempoInicioTeste = System.currentTimeMillis();
+        Executor executor = new Executor(this);
         executor.start();
         
         iniciarTrabalhadores(executor);
 
-        long tempoTotal = System.currentTimeMillis() - tempoInicio;
-        System.out.println(tempoTotal + " ms");
-        Main.tempoTestes += tempoTotal;
+        long tempoFinalTeste = System.currentTimeMillis() - tempoInicioTeste;
+        System.out.println(tempoFinalTeste + " ms");
+        Main.somarTempoTestes(tempoFinalTeste);
     }
 
     public void alimentarTarefas(){

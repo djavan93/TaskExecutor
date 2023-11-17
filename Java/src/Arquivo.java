@@ -20,7 +20,7 @@ public class Arquivo {
         }
     }
 
-    public int  leitura(){
+    public int leitura(){
         return this.valor;
     }
 }

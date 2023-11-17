@@ -2,13 +2,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Executor extends Thread{
-    Queue<Tarefa> tarefas;
+    private Queue<Tarefa> tarefas;
 
-    TaskExecutor taskExecutor;
-    boolean possuiElementos;
+    private TaskExecutor taskExecutor;
+    private boolean possuiElementos;
 
-    public Executor(String name, TaskExecutor taskExecutor){
-        super(name);
+    public Executor(TaskExecutor taskExecutor){
         this.taskExecutor = taskExecutor;
         tarefas = new LinkedList<Tarefa>();
         possuiElementos = true;

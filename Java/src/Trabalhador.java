@@ -12,24 +12,24 @@ public class Trabalhador extends Thread{
     
     public void escrita(){
         try {
-            sleep((long)tarefa.custo * 1000);
+            sleep((long)tarefa.getCusto() * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        int valorResultado = arquivoCompartilhado.escrita(tarefa.valor);
-        executor.guardarResultado(new Resultado(tarefa.idTarefa, valorResultado, (System.currentTimeMillis() - tempoInicio) ));
+        int valorResultado = arquivoCompartilhado.escrita(tarefa.getValor());
+        executor.guardarResultado(new Resultado(tarefa.getIdTarefa(), valorResultado, (System.currentTimeMillis() - tempoInicio) ));
     }
 
     public void leitura(){
         try {
-            sleep((long)tarefa.custo * 1000);
+            sleep((long)tarefa.getCusto() * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();  
         }
         
         int valorResultado = arquivoCompartilhado.leitura();
-        executor.guardarResultado(new Resultado(tarefa.idTarefa, valorResultado, (System.currentTimeMillis() - tempoInicio) ));
+        executor.guardarResultado(new Resultado(tarefa.getIdTarefa(), valorResultado, (System.currentTimeMillis() - tempoInicio) ));
     }
 
     public void run(){
@@ -37,7 +37,7 @@ public class Trabalhador extends Thread{
         while(novaTarefa != null){
             tarefa = novaTarefa;
             tempoInicio = System.currentTimeMillis();
-            if (tarefa.tipo == 0) {
+            if (tarefa.getTipo() == 0) {
                 escrita();
             }
             else{
