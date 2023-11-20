@@ -16,10 +16,10 @@ public class Executor extends Thread{
     public void run(){
         Tarefa tarefa = null;
         while(!taskExecutor.Tarefas.isEmpty()){
-            tarefa = taskExecutor.Tarefas.poll();
-            if(tarefa != null){
-                despacharTarefa(tarefa);
-            }
+            tarefa = taskExecutor.Tarefas.remove();
+            //if(tarefa != null){
+            despacharTarefa(tarefa);
+            //}
         } 
         possuiElementos = false;
 
