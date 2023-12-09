@@ -23,4 +23,8 @@ public class Arquivo {
     public int leitura(){
         return this.valor;
     }
+
+    public int getValor(){
+        return valor;
+    }
 }

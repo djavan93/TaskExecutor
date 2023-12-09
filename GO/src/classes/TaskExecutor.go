@@ -36,6 +36,8 @@ func (te *TaskExecutor) Iniciar() int64{
 	te.IniciarTrabalhadores(executor, canalBufferizado)
 
 	tempoFinalTeste := time.Since(tempoInicioTeste).Milliseconds()
+
+	
 	
 	return tempoFinalTeste
 }

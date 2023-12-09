@@ -22,7 +22,7 @@ public class TaskExecutor {
         arquivo = new Arquivo();
     }
 
-    public void iniciar(){
+    public int iniciar(){
         alimentarTarefas();
         
         long tempoInicioTeste = System.currentTimeMillis();
@@ -34,12 +34,14 @@ public class TaskExecutor {
         long tempoFinalTeste = System.currentTimeMillis() - tempoInicioTeste;
         System.out.println(tempoFinalTeste + " ms");
         Main.somarTempoTestes(tempoFinalTeste);
+
+        return arquivo.getValor();
     }
 
     public void alimentarTarefas(){
         for(long i = 0; i < Math.pow(10, N); i++){
             double custo = Math.random() * 0.01;
-            int tipo = Math.random() <= E/100 ? 0 : 1;
+            int tipo = Math.random() <= (double)E/100 ? 0 : 1;
             int valor = (int) Math.floor(Math.random() * 11);
             Tarefas.add(new Tarefa(i, custo, tipo, valor));
         }
