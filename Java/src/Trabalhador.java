@@ -33,17 +33,18 @@ public class Trabalhador extends Thread{
     }
 
     public void run(){
-        Tarefa novaTarefa = executor.pegarTarefa();
-        while(novaTarefa != null){
-            tarefa = novaTarefa;
+        tarefa = executor.pegarTarefa();
+        while(tarefa != null){
             tempoInicio = System.currentTimeMillis();
+
             if (tarefa.getTipo() == 0) {
                 escrita();
             }
-            else{
+            else {
                 leitura();
             }
-            novaTarefa = executor.pegarTarefa(); 
+
+            tarefa = executor.pegarTarefa();
         }
     }
 }

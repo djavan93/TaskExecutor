@@ -1,8 +1,6 @@
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.Writer;
-import java.io.FileWriter;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,18 +9,19 @@ import java.util.UUID;
 public class Main {
     //Testes
     private static ArrayList<Integer> N = new ArrayList<Integer>(Arrays.asList(5, 7)); //(5, 7, 9));
-    private static ArrayList<Integer> E = new ArrayList<Integer>(Arrays.asList(70, 40)); 
+    private static ArrayList<Integer> E = new ArrayList<Integer>(Arrays.asList(0, 40)); 
     private static ArrayList<Integer> T = new ArrayList<Integer>(Arrays.asList(1, 16, 256));
 
     private static long tempoTestes = 0;
-    
+    private static long tempoInicio;
+
     public static void main(String[] args) {
         int numeroTesteContador = 1;
-        long tempoInicio = System.currentTimeMillis();
+        tempoInicio = System.currentTimeMillis();
         System.out.println("Sistema em executação!\nEm breve o arquivo de resultado estará na pasta resultados");
 
         try {
-            File caminhoArquivo = new File("Java/resultados"); 
+            File caminhoArquivo = new File("../resultados"); 
             FileOutputStream arquivoSaida = new FileOutputStream(caminhoArquivo + "/resultado_" + UUID.randomUUID() + ".txt");
             PrintStream printStream = new PrintStream(arquivoSaida);
             System.setOut(printStream);
@@ -31,14 +30,16 @@ public class Main {
             for(int i = 0; i < N.size(); i++){
                 for(int j = 0; j < E.size(); j++){
                     for(int k = 0; k < T.size(); k++){
-                        int[] entradas = lerEntradas(i, j, k);
-                        TaskExecutor executor = new TaskExecutor(entradas[0], entradas[1], entradas[2]);
-                        System.out.print(numeroTesteContador + " - Teste (N = " + entradas[0] + ", E = " + entradas[1] + ", T = " + entradas[2] + "): Tempo = ");
 
-                        String resultado = ""+executor.iniciar();
-                        Writer writer = new FileWriter("Java/src/resultadosValores/resultadosValores_" + numeroTesteContador + ".txt");
-                        writer.write(resultado);
-                        writer.close();
+
+                        int[] entradas = lerEntradas(i, j, k);
+                        File caminho = new File("../src/resultadosValores/resultadosValores_" + numeroTesteContador + ".txt");
+                        TaskExecutor executor = new TaskExecutor(entradas[0], entradas[1], entradas[2], caminho);
+                        System.out.print(numeroTesteContador + " - Teste (N = " + entradas[0] + ", E = " + entradas[1] + ", T = " + entradas[2] + "): Tempo = ");
+                        
+                        //Main.verificarTempo("inicio teste");
+                        
+                        executor.iniciar();
 
                         numeroTesteContador++;
                     }
@@ -64,4 +65,9 @@ public class Main {
         int[] vetor = {N.get(i), E.get(j), T.get(k)};
         return vetor;
     }
+
+    public static void verificarTempo(String parte){
+        System.out.println(parte + " durou " + (System.currentTimeMillis() - tempoInicio));
+    }
+
 }

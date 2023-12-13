@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,7 +12,7 @@ public class TaskExecutor {
 
     Arquivo arquivo;
 
-    public TaskExecutor(int N, int E, int T){
+    public TaskExecutor(int N, int E, int T, File caminho){
         this.N = N;
         this.E = E;
         this.T = T;
@@ -19,12 +20,11 @@ public class TaskExecutor {
         Tarefas = new LinkedList<Tarefa>();
         Resultados = new LinkedList<Resultado>();
 
-        arquivo = new Arquivo();
+        arquivo = new Arquivo(caminho);
     }
 
-    public int iniciar(){
+    public void iniciar(){
         alimentarTarefas();
-        
         long tempoInicioTeste = System.currentTimeMillis();
         Executor executor = new Executor(this);
         executor.start();
@@ -35,7 +35,6 @@ public class TaskExecutor {
         System.out.println(tempoFinalTeste + " ms");
         Main.somarTempoTestes(tempoFinalTeste);
 
-        return arquivo.getValor();
     }
 
     public void alimentarTarefas(){
@@ -55,6 +54,7 @@ public class TaskExecutor {
 		}
 		for (int i = 0; i < T; i++) {
 			trabalhadores[i].start();
+            trabalhadores[i].setPriority(10);
 		}
         
 		try {

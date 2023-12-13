@@ -17,9 +17,7 @@ public class Executor extends Thread{
         Tarefa tarefa = null;
         while(!taskExecutor.Tarefas.isEmpty()){
             tarefa = taskExecutor.Tarefas.remove();
-            //if(tarefa != null){
             despacharTarefa(tarefa);
-            //}
         } 
         possuiElementos = false;
 
@@ -45,9 +43,9 @@ public class Executor extends Thread{
 				e.printStackTrace();
 			}
 		}
-		
 		return tarefas.poll();
 	}
+    
 
     public synchronized void acordarTrabalhadores(){
         notifyAll();

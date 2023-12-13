@@ -1,0 +1,16 @@
+{
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "/home/djavan/Documentos/graalvm-jdk-17_linux-x64_bin/graalvm-jdk-17.0.9+11.1"
+        }
+    ],
+    "graalvm.installations": [
+        "/home/djavan/Documentos/graalvm-jdk-17_linux-x64_bin/graalvm-jdk-17.0.9+11.1"
+    ],
+    "terminal.integrated.env.linux": {
+        "PATH": "${env:PATH}",
+        "GRAALVM_HOME": "/home/djavan/Documentos/graalvm-jdk-17_linux-x64_bin/graalvm-jdk-17.0.9+11.1"
+    },
+    "graalvm.home": "/home/djavan/Documentos/graalvm-jdk-17_linux-x64_bin/graalvm-jdk-17.0.9+11.1"
+}
