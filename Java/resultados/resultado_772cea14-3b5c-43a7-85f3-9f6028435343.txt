@@ -1,0 +1,50 @@
+1 - Teste (N = 5, E = 0, T = 1): Tempo = alimentar Tarefas 35
+Tempo trabalhadores 1
+Executor 41
+2144 ms
+2 - Teste (N = 5, E = 0, T = 16): Tempo = alimentar Tarefas 16
+Tempo trabalhadores 41
+Executor 43
+465 ms
+3 - Teste (N = 5, E = 0, T = 256): Tempo = alimentar Tarefas 10
+Executor 35
+Tempo trabalhadores 446
+446 ms
+4 - Teste (N = 5, E = 40, T = 1): Tempo = alimentar Tarefas 27
+Tempo trabalhadores 0
+Executor 10
+14212 ms
+5 - Teste (N = 5, E = 40, T = 16): Tempo = alimentar Tarefas 15
+Tempo trabalhadores 5
+Executor 7
+13959 ms
+6 - Teste (N = 5, E = 40, T = 256): Tempo = alimentar Tarefas 7
+Executor 10
+Tempo trabalhadores 46
+14798 ms
+7 - Teste (N = 7, E = 0, T = 1): Tempo = alimentar Tarefas 1001
+Tempo trabalhadores 0
+Executor 2049
+191195 ms
+8 - Teste (N = 7, E = 0, T = 16): Tempo = alimentar Tarefas 601
+Tempo trabalhadores 18
+Executor 2860
+48121 ms
+9 - Teste (N = 7, E = 0, T = 256): Tempo = alimentar Tarefas 780
+Tempo trabalhadores 3762
+Executor 36370
+45966 ms
+10 - Teste (N = 7, E = 40, T = 1): Tempo = alimentar Tarefas 697
+Tempo trabalhadores 0
+Executor 388
+1320383 ms
+11 - Teste (N = 7, E = 40, T = 16): Tempo = alimentar Tarefas 589
+Tempo trabalhadores 7
+Executor 1561
+1448949 ms
+12 - Teste (N = 7, E = 40, T = 256): Tempo = alimentar Tarefas 602
+Tempo trabalhadores 1234
+Executor 2293
+1422317 ms
+Tempo gasto pelos trabalhadores para executar todos os testes: 4522955 ms
+Tempo gasto pelo sistema: 4527418 ms

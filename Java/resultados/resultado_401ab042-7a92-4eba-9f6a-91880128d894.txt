@@ -1,0 +1,14 @@
+1 - Teste (N = 5, E = 0, T = 1): Tempo = 2116 ms
+2 - Teste (N = 5, E = 0, T = 16): Tempo = 473 ms
+3 - Teste (N = 5, E = 0, T = 256): Tempo = 560 ms
+4 - Teste (N = 5, E = 40, T = 1): Tempo = 11727 ms
+5 - Teste (N = 5, E = 40, T = 16): Tempo = 13489 ms
+6 - Teste (N = 5, E = 40, T = 256): Tempo = 11096 ms
+7 - Teste (N = 7, E = 0, T = 1): Tempo = 193037 ms
+8 - Teste (N = 7, E = 0, T = 16): Tempo = 45474 ms
+9 - Teste (N = 7, E = 0, T = 256): Tempo = 47773 ms
+10 - Teste (N = 7, E = 40, T = 1): Tempo = 1249123 ms
+11 - Teste (N = 7, E = 40, T = 16): Tempo = 1336037 ms
+12 - Teste (N = 7, E = 40, T = 256): Tempo = 1457870 ms
+Tempo gasto pelos trabalhadores para executar todos os testes: 4368775 ms
+Tempo gasto pelo sistema: 4376149 ms

@@ -1,10 +1,13 @@
 package classes
 
 import (
+	"fmt"
 	"math"
 	"math/rand"
 	"sync"
 	"time"
+	"strconv"
+	"os"
 )
 
 type TaskExecutor struct {
@@ -16,17 +19,19 @@ type TaskExecutor struct {
 	Arquivo    *Arquivo
 }
 
-func CriarTaskExecutor(n int, e int, t int) TaskExecutor{
+func CriarTaskExecutor(n int, e int, t int, resultadosValores *os.File) TaskExecutor{
 	return TaskExecutor{
 		N: n,
 		E: e,
 		T: t,
-		Arquivo: CriarArquivo(),
+		Arquivo: CriarArquivo(resultadosValores),
 	}
 }
 
 func (te *TaskExecutor) Iniciar() int64{
+	alimentarTarefasInicio := time.Now();
 	te.AlimentarTarefas()
+	fmt.Println("Alimentar Tarefas = " + strconv.FormatInt(time.Since(alimentarTarefasInicio).Milliseconds(), 10));
 	canalBufferizado := make(chan *Tarefa, (te.T + 50))
 
 	tempoInicioTeste := time.Now()
@@ -59,6 +64,7 @@ func (te *TaskExecutor) AlimentarTarefas() {
 func (te *TaskExecutor) IniciarTrabalhadores(executor *Executor, canalBufferizado <-chan *Tarefa) {
 	var wg sync.WaitGroup
 
+	inicioTrabalhadores := time.Now();
 	for i := 0; i < te.T; i++ {
 		wg.Add(1)
 		go func() {
@@ -67,6 +73,6 @@ func (te *TaskExecutor) IniciarTrabalhadores(executor *Executor, canalBufferizad
 			trabalhador.Run()
 		}()
 	}
-
+	fmt.Println("iniciar trabalhadores = " + strconv.FormatInt(time.Since(inicioTrabalhadores).Milliseconds(), 10));
 	wg.Wait()
 }

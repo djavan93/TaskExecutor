@@ -10,7 +10,7 @@ public class Main {
     //Testes
     private static ArrayList<Integer> N = new ArrayList<Integer>(Arrays.asList(5, 7)); //(5, 7, 9));
     private static ArrayList<Integer> E = new ArrayList<Integer>(Arrays.asList(0, 40)); 
-    private static ArrayList<Integer> T = new ArrayList<Integer>(Arrays.asList(1, 16, 256));
+    private static ArrayList<Integer> T = new ArrayList<Integer>(Arrays.asList(16, 256));
 
     private static long tempoTestes = 0;
     private static long tempoInicio;

@@ -1,0 +1,26 @@
+1 - Teste (N = 5, E = 0, T = 1): Tempo = 2490 ms
+Buscar Tarefa = 164
+2 - Teste (N = 5, E = 0, T = 16): Tempo = 541 ms
+Buscar Tarefa = 256
+3 - Teste (N = 5, E = 0, T = 256): Tempo = 575 ms
+Buscar Tarefa = 291
+4 - Teste (N = 5, E = 40, T = 1): Tempo = 11302 ms
+Buscar Tarefa = 178
+5 - Teste (N = 5, E = 40, T = 16): Tempo = 18083 ms
+Buscar Tarefa = 159
+6 - Teste (N = 5, E = 40, T = 256): Tempo = 11108 ms
+Buscar Tarefa = 202
+7 - Teste (N = 7, E = 0, T = 1): Tempo = 223515 ms
+Buscar Tarefa = 15673
+8 - Teste (N = 7, E = 0, T = 16): Tempo = 56180 ms
+Buscar Tarefa = 37541
+9 - Teste (N = 7, E = 0, T = 256): Tempo = 56068 ms
+Buscar Tarefa = 5904459
+10 - Teste (N = 7, E = 40, T = 1): Tempo = 1380645 ms
+Buscar Tarefa = 17722
+11 - Teste (N = 7, E = 40, T = 16): Tempo = 1477005 ms
+Buscar Tarefa = 17867
+12 - Teste (N = 7, E = 40, T = 256): Tempo = 1466337 ms
+Buscar Tarefa = 17372
+Tempo gasto pelos trabalhadores para executar todos os testes: 4703849 ms
+Tempo gasto pelo sistema: 4710742 ms

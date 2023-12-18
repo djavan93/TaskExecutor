@@ -1,15 +1,21 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Arquivo {
     private File caminho;
+    private Path caminhoEscrita;
     private Lock lock;
+    private BufferedWriter bufferedWriter;
 
     public Arquivo(File caminho){
         this.caminho = caminho;
@@ -20,18 +26,19 @@ public class Arquivo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        caminhoEscrita = Paths.get(""+caminho);
     }
 
-    public synchronized int escrita(int v){
+    public int escrita(int v){
         int valorNovo = leitura();
         String texto = (""+(valorNovo + v)).trim();
-        Writer writer;
         try {
             synchronized (this){      
-                writer = new FileWriter(caminho, false);
-                writer.write(texto);
+                bufferedWriter = Files.newBufferedWriter(caminhoEscrita);
+                bufferedWriter.write(texto);
+                bufferedWriter.close();
             }
-            writer.close();
+            notificar();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +51,9 @@ public class Arquivo {
         String numeroFinal;
         int valorNovo = 0;    
         try (Reader reader = new FileReader(caminho)) {
+            reader.read(numero);
             while(numero[0] == '\u0000'){
+                esperar();
                 reader.read(numero);
             }
             reader.close();
@@ -54,5 +63,17 @@ public class Arquivo {
             e.printStackTrace();
         }
         return valorNovo;
+    }
+
+    public synchronized void esperar() {
+            try {
+                wait(5);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+    }
+
+    public synchronized void notificar() {
+        notify();
     }
 }

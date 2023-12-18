@@ -1,0 +1,11 @@
+1 - Teste (N = 5, E = 0, T = 1): Tempo = 2086 ms
+2 - Teste (N = 5, E = 0, T = 16): Tempo = 481 ms
+3 - Teste (N = 5, E = 0, T = 256): Tempo = 484 ms
+4 - Teste (N = 5, E = 40, T = 1): Tempo = 10974 ms
+5 - Teste (N = 5, E = 40, T = 16): Tempo = 13179 ms
+6 - Teste (N = 5, E = 40, T = 256): Tempo = 9247 ms
+7 - Teste (N = 7, E = 0, T = 1): Tempo = 198178 ms
+8 - Teste (N = 7, E = 0, T = 16): Tempo = 52004 ms
+9 - Teste (N = 7, E = 0, T = 256): Tempo = 51934 ms
+10 - Teste (N = 7, E = 40, T = 1): Tempo = 1441675 ms
+11 - Teste (N = 7, E = 40, T = 16): Tempo = 

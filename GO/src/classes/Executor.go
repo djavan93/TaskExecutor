@@ -1,4 +1,9 @@
 package classes
+import (
+	"fmt"
+	"time"
+	"strconv"
+)
 
 type Executor struct {
 	TaskExecutor    *TaskExecutor
@@ -15,13 +20,14 @@ func CriarExecutor(taskExecutor *TaskExecutor, canalBufferizado chan<- *Tarefa) 
 }
 
 func (e *Executor) Run() {
+	inicioExecutor := time.Now();
 	for len(e.TaskExecutor.Tarefas) > 0 {
 		tarefa := e.TaskExecutor.Tarefas[0]
 		e.TaskExecutor.Tarefas = e.TaskExecutor.Tarefas[1:]
 
 		e.DespacharTarefa(tarefa)
 	}
-
+	fmt.Println("Executor = "+ strconv.FormatInt(time.Since(inicioExecutor).Milliseconds(), 10));
 	close(e.CanalBufferizado)
 }
 
